@@ -12,7 +12,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    
+
     # Extract the data from the request
     batting_team = data.get('battingTeam')
     bowling_team = data.get('bowlingTeam')
@@ -22,17 +22,17 @@ def predict():
     wickets_left = data.get('wicketsLeft')
     target = data.get('target')
 
-    current_run_rate = np.where(
-        120-balls_left > 0, 
-        ((target-runs_left)*6) / (120-balls_left), 
-        0
-    )
+    # Calculate current run rate
+    if balls_left == 120:
+        current_run_rate = 0
+    else:
+        current_run_rate = ((target - runs_left) * 6) / (120 - balls_left)
     
-    required_run_rate = np.where(
-        balls_left > 0, 
-        (runs_left*6) / balls_left, 
-        np.where(runs_left > 0, 1e6, 0)
-    )
+    # Calculate required run rate
+    if balls_left > 0:
+        required_run_rate = (runs_left * 6) / balls_left
+    else:
+        required_run_rate = 1e6 if runs_left > 0 else 0
 
     features = [[batting_team, bowling_team, city, runs_left, balls_left, wickets_left, current_run_rate, required_run_rate, target]]
 

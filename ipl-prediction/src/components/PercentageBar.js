@@ -21,7 +21,7 @@ function LinearProgressWithLabel(props) {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Box sx={{ minWidth: 150 }}>
-          <Typography variant="body2" color="rgba(255, 255, 255, 0.75);">{props.team1Name}</Typography>
+          <Typography variant="body2" color="rgba(255, 255, 255, 0.75);">{props.team1name}</Typography>
           <Typography variant="body2" color="rgba(255, 255, 255, 0.5);">{`${Math.round(
             props.value,
           )}%`}</Typography>
@@ -30,7 +30,7 @@ function LinearProgressWithLabel(props) {
           <BorderLinearProgress variant="determinate" {...props} />
         </Box>
         <Box sx={{ minWidth: 150 }}>
-          <Typography variant="body2" color="rgba(255, 255, 255, 0.75);">{props.team2Name}</Typography>
+          <Typography variant="body2" color="rgba(255, 255, 255, 0.75);">{props.team2name}</Typography>
           <Typography variant="body2" color="rgba(255, 255, 255, 0.5);">{`${Math.round(
             100-props.value,
           )}%`}</Typography>
@@ -41,15 +41,15 @@ function LinearProgressWithLabel(props) {
 
 LinearProgressWithLabel.propTypes = {
     value: PropTypes.number.isRequired,
-    team1Name: PropTypes.string.isRequired,
-    team2Name: PropTypes.string.isRequired,
+    team1name: PropTypes.string.isRequired,
+    team2name: PropTypes.string.isRequired,
 };
 
-function PercentageBar({ team1Name, team2Name, percentage }) {
+function PercentageBar({ team1name, team2name, percentage }) {
   return (
     <div className="percentage-bar">
       <Box sx={{ width: '100%' }}>
-        <LinearProgressWithLabel value={percentage} team1Name={team1Name} team2Name={team2Name} />
+        <LinearProgressWithLabel value={percentage} team1name={team1name} team2name={team2name} />
       </Box>
     </div>
   );

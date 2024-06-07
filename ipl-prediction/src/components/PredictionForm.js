@@ -1,6 +1,20 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+
+const teamOptions = [
+    'Chennai Super Kings',
+    'Delhi Capitals',
+    'Gujarat Titans',
+    'Kolkata Knight Riders',
+    'Lucknow Super Giants',
+    'Mumbai Indians',
+    'Punjab Kings',
+    'Rajasthan Royals',
+    'Royal Challengers Bangalore',
+    'Sunrisers Hyderabad',
+  ];
 
 const validationSchema = Yup.object({
   battingTeam: Yup.string().required('Required'),
@@ -30,22 +44,39 @@ const PredictionForm = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        setSubmitting(false);
+        axios.post('http://localhost:5000/predict', values)
+          .then(response => {
+            console.log(response.data);
+            setSubmitting(false);
+          })
+          .catch(error => {
+            console.error('There was an error!', error);
+            setSubmitting(false);
+          });
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, resetForm }) => (
         <Form className="form-container">
           <div className="form-row">
             <div className="form-item">
               <label htmlFor="battingTeam" className="label">Batting Team:</label>
-              <Field type="text" name="battingTeam" className="input"/>
+              <Field as="select" name="battingTeam" className="input">
+                <option value="">Select Team</option>
+                {teamOptions.map((team, index) => (
+                  <option key={index} value={team}>{team}</option>
+                ))}
+              </Field>
               <ErrorMessage name="battingTeam" component="div" className="error" />
             </div>
 
             <div className="form-item">
               <label htmlFor="bowlingTeam" className="label">Bowling Team:</label>
-              <Field type="text" name="bowlingTeam" className="input"/>
+              <Field as="select" name="bowlingTeam" className="input">
+                <option value="">Select Team</option>
+                {teamOptions.map((team, index) => (
+                  <option key={index} value={team}>{team}</option>
+                ))}
+              </Field>
               <ErrorMessage name="bowlingTeam" component="div" className="error" />
             </div>
 
@@ -102,6 +133,7 @@ const PredictionForm = () => {
 
           <div className="button-container">
             <button type="submit" disabled={isSubmitting}>Submit</button>
+            <button type="button" onClick={resetForm} disabled={isSubmitting}>Reset</button>
           </div>
         </Form>
       )}

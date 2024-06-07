@@ -5,8 +5,8 @@ import PercentageBar from './components/PercentageBar'; // Import the Percentage
 
 function App() {
   // Example values for demonstration
-  const team1Name = "Royal Challengers Bangalore";
-  const team2Name = "Team B";
+  const team1name = "Royal Challengers Bangalore";
+  const team2name = "Team B";
   const percentage = 75; // Example percentage value
 
   return (
@@ -16,7 +16,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <PredictionForm />
-      <PercentageBar team1Name={team1Name} team2Name={team2Name} percentage={percentage} />
+      <PercentageBar team1name={team1name} team2name={team2name} percentage={percentage} />
     </div>
   );
 }

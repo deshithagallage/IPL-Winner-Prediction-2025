@@ -27,7 +27,7 @@ function LinearProgressWithLabel(props) {
           )}%`}</Typography>
         </Box>
         <Box sx={{ width: '100%', mx: 1 }}>
-          <BorderLinearProgress variant="determinate" {...props} />
+          <BorderLinearProgress variant="determinate" value={props.value} />
         </Box>
         <Box sx={{ minWidth: 150 }}>
           <Typography variant="body2" color="rgba(255, 255, 255, 0.75);">{props.team2name}</Typography>

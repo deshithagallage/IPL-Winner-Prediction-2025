@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+
+import PercentageBar from './PercentageBar'; // Import the PercentageBar component
 
 const teamOptions = [
     'Chennai Super Kings',
@@ -29,7 +31,12 @@ const validationSchema = Yup.object({
 });
 
 const PredictionForm = () => {
+  const [team1name, setTeam1Name] = useState('Batting Team');
+  const [team2name, setTeam2Name] = useState('Bowling Team');
+  const [percentage, setPercentage] = useState(50);
+
   return (
+    <>
     <Formik
       initialValues={{
         battingTeam: '',
@@ -47,6 +54,9 @@ const PredictionForm = () => {
         axios.post('http://localhost:5000/predict', values)
           .then(response => {
             console.log(response.data);
+            setTeam1Name(response.data.batting_team);
+            setTeam2Name(response.data.bowling_team);
+            setPercentage(response.data.prediction);
             setSubmitting(false);
           })
           .catch(error => {
@@ -133,11 +143,18 @@ const PredictionForm = () => {
 
           <div className="button-container">
             <button type="submit" disabled={isSubmitting}>Submit</button>
-            <button type="button" onClick={resetForm} disabled={isSubmitting}>Reset</button>
+            <button type="button" onClick={() => {
+                resetForm();
+                setTeam1Name('Batting Team');
+                setTeam2Name('Bowling Team');
+                setPercentage(50);
+            }} disabled={isSubmitting}>Reset</button>
           </div>
         </Form>
       )}
     </Formik>
+    <PercentageBar team1name={team1name} team2name={team2name} percentage={percentage} />
+    </>
   );
 };
 

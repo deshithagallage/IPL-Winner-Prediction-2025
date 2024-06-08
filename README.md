@@ -1,6 +1,6 @@
-# IPL Winner Prediction 2024
+# IPL Winner Prediction 2025
 
-This project aims to develop a machine learning model to predict the winner of the Indian Premier League (IPL) 2024. The model leverages historical IPL data, including team performance, player statistics, and match outcomes, to forecast the potential winners. The project also includes a user-friendly interface for users to interact with the model and visualize predictions.
+This project aims to develop a machine learning model to predict the match winners of the Indian Premier League (IPL) 2025 matches. The model leverages historical IPL data from 2008 to 2024, including team performance, player statistics, and match outcomes, to forecast the potential winners. The project also includes a user-friendly interface for users to interact with the model and visualize predictions.
 
 The repository contains:
 

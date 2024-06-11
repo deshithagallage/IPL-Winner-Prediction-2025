@@ -2,12 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pickle
 import pandas as pd
-import numpy as np
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('new_model.pkl', 'rb'))
 
 @app.route('/predict', methods=['POST'])
 def predict():

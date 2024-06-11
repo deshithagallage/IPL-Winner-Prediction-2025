@@ -25,7 +25,7 @@ const cityOptions = [
     'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
     'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi', 'Rajkot',
     'Kanpur', 'Bengaluru', 'Indore', 'Dubai', 'Sharjah', 'Navi Mumbai',
-    'Guwahati'
+    'Guwahati', 'Other'
 ];
 
 const validationSchema = Yup.object({
@@ -35,7 +35,7 @@ const validationSchema = Yup.object({
   runsLeft: Yup.number().required('Required').min(0, 'Must be 0 or more'),
   ballsLeft: Yup.number().required('Required').min(0, 'Must be 0 or more').max(120, 'Must be 120 or less'),
   wicketsLeft: Yup.number().required('Required').min(0, 'Must be 0 or more').max(10, 'Must be 10 or less'),
-  target: Yup.number().required('Required').min(0, 'Must be 0 or more')
+  target: Yup.number().required('Required').min(0, 'Must be 0 or more'),
 });
 
 const PredictionForm = () => {
@@ -56,6 +56,14 @@ const PredictionForm = () => {
         target: ''
       }}
       validationSchema={validationSchema}
+      validate={values => {
+        const errors = {};
+        if (values.battingTeam === values.bowlingTeam) {
+          errors.battingTeam = 'Cannot be the same as bowling team';
+          errors.bowlingTeam = 'Cannot be the same as batting team';
+        }
+        return errors;
+      }}
       onSubmit={(values, { setSubmitting }) => {
         axios.post('http://localhost:5000/predict', values)
           .then(response => {

@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>IPL 2024 Prediction</h1>
+        <h1>IPL 2025 Winner Prediction</h1>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <PredictionForm />

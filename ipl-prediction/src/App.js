@@ -1,23 +1,15 @@
-import logo from './logo.svg';
+import logo from './images/ipl-logo.png'; // Import the IPL logo
 import './App.css';
+import PredictionForm from './components/PredictionForm';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h1>IPL 2025 Winner Prediction</h1>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <PredictionForm />
     </div>
   );
 }

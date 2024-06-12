@@ -19,13 +19,12 @@ const teamOptions = [
   ];
 
 const cityOptions = [
-    'Bangalore', 'Chandigarh', 'Delhi', 'Mumbai', 'Kolkata', 'Jaipur',
-    'Hyderabad', 'Chennai', 'Cape Town', 'Port Elizabeth', 'Durban',
-    'Centurion', 'East London', 'Johannesburg', 'Kimberley',
-    'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
-    'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi', 'Rajkot',
-    'Kanpur', 'Bengaluru', 'Indore', 'Dubai', 'Sharjah', 'Navi Mumbai',
-    'Guwahati', 'Other'
+  'Abu Dhabi', 'Ahmedabad', 'Bangalore', 'Bloemfontein', 'Cape Town',
+  'Centurion', 'Chandigarh', 'Chennai', 'Cuttack', 'Delhi', 'Dubai',
+  'Dharamsala', 'Durban', 'East London', 'Guwahati', 'Hyderabad',
+  'Indore', 'Jaipur', 'Johannesburg', 'Kanpur', 'Kimberley', 'Kolkata',
+  'Lucknow', 'Mohali', 'Mumbai', 'Navi Mumbai', 'Nagpur', 'Port Elizabeth',
+  'Pune', 'Raipur', 'Rajkot', 'Ranchi', 'Sharjah', 'Visakhapatnam', 'Other'
 ];
 
 const validationSchema = Yup.object({
